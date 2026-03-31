@@ -1,0 +1,56 @@
+services:
+  # PostgreSQL database for our services
+  database:
+    build: ./backend-database
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    env_file:
+      - ./backend-database/.env
+
+  # MLFlow server for experiment tracking (uses the database)
+  experiment-tracking:
+    build: ./backend-service-experiment-tracking
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+
+  # prefect server
+  orchestration:
+    build: ./backend-service-orchestration
+    ports:
+      - 4200:4200
+
+  # model training service
+  train-deploy:
+    build: ./train-and-deploy
+
+  web-api-dev:
+    image: mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+
+  batch-dev:
+    image: mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
+    volumes:
+      - .:/workspace:cached
+    command: sleep infinity
+
+  # batch scoring service — registers a Prefect deployment with a monthly schedule
+  # batch-score:
+  #   build: ./deployment-batch
+  #   volumes:
+  #     - ./train-and-deploy/data:/workspace/train-and-deploy/data:ro
+  #   env_file:
+  #     - ./deployment-batch/.env
+  #   environment:
+  #     - PREFECT_API_URL=http://orchestration:4200/api
+  #   depends_on:
+  #     - experiment-tracking
+  #     - orchestration
+  #     - database
+
+volumes:
+  postgres-data:
