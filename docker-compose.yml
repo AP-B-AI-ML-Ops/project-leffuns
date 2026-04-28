@@ -26,6 +26,18 @@ services:
   train-deploy:
     build: ./train-and-deploy
 
+  # grafana server
+  grafana:
+    image: grafana/grafana
+    restart: unless-stopped
+    volumes:
+      - batch-data:/batch-data
+      - grafana-data-config-datasources:/etc/grafana/provisioning/datasources:ro
+      - grafana-data-config-dashboards:/etc/grafana/provisioning/dashboards:ro
+      - grafana-data-dashboards:/opt/grafana/dashboards
+    ports:
+      - "3400:3000"
+
   web-api-dev:
     image: mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
     volumes:
@@ -53,4 +65,10 @@ services:
   #     - database
 
 volumes:
+  # storage for persistent database usage
   postgres-data:
+  # grafana volumes for persistent configuration and datastorage
+  grafana-data-config-datasources:
+  grafana-data-config-dashboards:
+  grafana-data-dashboards:
+  batch-data:
