@@ -4,7 +4,7 @@
 
 ![](.\public\img\wind-turbine-future-energy.2e16d0ba.fill-933x525-c100.png)
 
-🇨🇳 [简体中文](./README.zh-CN.md) | 🇺🇸 [English](./README.md) | 🇳🇱 [Nederlands](./README.nl.md)
+<img src="./public/img/china.png" height="14px"> [简体中文](./README.zh-CN.md) | <img src="./public/img/usa.png" height="13px"> [English](./README.md) | <img src="./public/img/belgium.png" height="14px"> [Nederlands](./README.nl.md)
 
 **一个端到端的机器学习系统，利用天气预报数据作为输入，预测安特卫普地区未来 24 小时的风能产量（单位：兆瓦/MW）。**
 

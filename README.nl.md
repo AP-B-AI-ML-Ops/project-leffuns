@@ -4,7 +4,7 @@
 
 ![](.\public\img\wind-turbine-future-energy.2e16d0ba.fill-933x525-c100.png)
 
-🇨🇳 [简体中文](./README.zh-CN.md) | 🇺🇸 [English](./README.md) | 🇳🇱 [Nederlands](./README.nl.md)
+<img src="./public/img/china.png" height="14px"> [简体中文](./README.zh-CN.md) | <img src="./public/img/usa.png" height="13px"> [English](./README.md) | <img src="./public/img/belgium.png" height="14px"> [Nederlands](./README.nl.md)
 
 **Een end-to-end ML-systeem dat de windenergieproductie (in MW) voor de regio Antwerpen voorspelt voor de komende 24 uur, met weersvoorspellingsgegevens als invoer.**
 
