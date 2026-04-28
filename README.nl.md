@@ -2,7 +2,7 @@
 
 # MLOps Project
 
-![](.\public\img\wind-turbine-future-energy.2e16d0ba.fill-933x525-c100.png)
+<img src=".\public\img\wind-turbine-future-energy.2e16d0ba.fill-933x525-c100.png">
 
 <img src="./public/img/china.png" height="14px"> [简体中文](./README.zh-CN.md) | <img src="./public/img/usa.png" height="13px"> [English](./README.md) | <img src="./public/img/belgium.png" height="14px"> [Nederlands](./README.nl.md)
 
