@@ -1,9 +1,18 @@
-FROM python:3.13-slim
+# 3.11 instead of 3.13 because of pkg_resources, which doesn't work on 3.13 yet
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# curl for testing
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 RUN pip install -U pip
 
-COPY . /
+COPY requirements.txt .
 
-RUN pip install -r ./requirements.txt --upgrade
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD [ "python", "main.py" ]
+COPY . .
+
+# Wait for Orchestration and MLFlow before running main.py
+CMD ["sh", "-c", "while ! curl -s http://orchestration:4200/api/health > /dev/null; do echo 'Waiting for Prefect...'; sleep 3; done; while ! curl -s http://experiment-tracking:5000 > /dev/null; do echo 'Waiting for MLFlow...'; sleep 3; done; echo 'All services up! Starting training flow...' && python main.py"]

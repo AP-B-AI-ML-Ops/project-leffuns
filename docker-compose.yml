@@ -21,10 +21,24 @@ services:
     build: ./backend-service-orchestration
     ports:
       - 4200:4200
+    environment:
+      - PREFECT_SERVER_API_HOST=0.0.0.0
 
   # model training service
+  # This runs a main.py which runs multiple scripts to preprocess data, train a model, and log the results to MLFlow.
   train-deploy:
-    build: ./train-and-deploy
+      build: ./train-and-deploy
+      volumes:
+        - ./Data:/app/data:ro
+        - ./Models:/app/models
+      environment:
+        - PREFECT_API_URL=http://orchestration:4200/api
+        - MLFLOW_TRACKING_URI=http://experiment-tracking:5000
+      depends_on:
+        - experiment-tracking
+        - orchestration
+        - database
+      restart: on-failure
 
   # grafana server
   grafana:
