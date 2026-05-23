@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+mlflow
+pandas
+scikit-learn
+
+# For Unit testing
+pytest
+httpx
