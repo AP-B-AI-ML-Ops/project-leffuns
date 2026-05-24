@@ -1,7 +1,7 @@
 prefect
 mlflow
 pandas
-scikit-learn
+scikit-learn<1.4
 evidently==0.4.28
 sqlalchemy
 psycopg2-binary

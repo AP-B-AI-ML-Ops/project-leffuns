@@ -46,8 +46,9 @@ services:
     restart: unless-stopped
     volumes:
       - batch-data:/batch-data
-      - grafana-data-config-datasources:/etc/grafana/provisioning/datasources:ro
-      - grafana-data-config-dashboards:/etc/grafana/provisioning/dashboards:ro
+      # use local bind mounts
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
       - grafana-data-dashboards:/opt/grafana/dashboards
     ports:
       - "3400:3000"
@@ -87,11 +88,9 @@ services:
       - experiment-tracking
       - orchestration
       - database
+    restart: on-failure
 
 volumes:
   postgres-data:
-  # grafana volumes for persistent configuration and datastorage
-  grafana-data-config-datasources:
-  grafana-data-config-dashboards:
   grafana-data-dashboards:
   batch-data:

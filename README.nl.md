@@ -22,7 +22,7 @@ Dit project maakt gebruik van verschillende datasets die allemaal gerelateerd zi
 - Kaggle Uccle
 
 
-> ℹ️**Opmerking**: *Kaggle Antwerpen is uit het project verwijderd wegens gebrek aan gegevens.*
+> ℹ️ **Opmerking**: *Kaggle Antwerpen is uit het project verwijderd wegens een gebrek aan gegevens.*
 
 #### Voor windproductie:
 - Energie Vlaanderen
@@ -32,13 +32,39 @@ Dit project maakt gebruik van verschillende datasets die allemaal gerelateerd zi
 
 Dit project beoogt de windenergieproductie voor Antwerpen voor de komende 24 uur te voorspellen. Met de resultaten is het de bedoeling dat je het optimale tijdstip kunt bepalen om apparaten op te laden (energie van het net halen). Soms is er te veel energie op het net, dus wanneer je energie verbruikt op een moment van overvloed, kun je daarvoor betaald krijgen.
 
-Dit alles betekent in feite dat energie op bepaalde tijdstippen ongelooflijk goedkoop, of zelfs winstgevend zal zijn, en dit project is bedoeld om dat tijdstip te vinden (optimaal tijdstip = output).
+Dit alles betekent in feite dat energie op bepaalde tijdstippen ongelooflijk goedkoop, of zelfs winstgevend zal zijn. Dit project is bedoeld om dat exacte tijdstip te vinden (optimaal tijdstip = output).
+
+**Modeldetails & Kenmerken:**
+Het systeem maakt gebruik van een Random Forest model dat is getraind op historische gegevens.
+* **Inputs:** Weersvoorspellingskenmerken, specifiek `ecmwf_windspeed_10m` (windsnelheid), `hour` (uur), en `month` (maand).
+* **Output:** De voorspelde windenergieproductie voor het netwerk (in MW).
+
+## 🛠️ Architectuur & Technologieën
+
+* **Experiment Tracking:** MLflow
+* **Workflow Orkestratie:** Prefect
+* **Monitoring:** Evidently & Grafana
+* **Implementatie:** FastAPI (Web Service) & Prefect Geplande Runs (Batch Service)
+* **Containerisatie:** Docker Compose
 
 ## 🌊Flows & Acties
 
-Het project maakt gebruik van ML om een output te voorspellen op basis van de datasets. De vereiste acties zijn:
-- Het laden van de datasets.
-- Een model trainen op de data.
-- Het model automatisch laten trainen op automatisch gedownloade data.
-- De uitkomsten van elk getraind model bekijken.
-- Gebruikmaken van Grafana voor een visuele weergave van de output.
+Het project maakt gebruik van ML om een output te voorspellen op basis van de datasets. De geautomatiseerde pipeline-acties zijn:
+* **Train & Deploy:** Automatisch gegevens laden, features ontwikkelen, modellen trainen en de beste registreren via MLflow.
+* **Batch Scoring:** Een geplande pipeline haalt nieuwe gegevens op, voert voorspellingen uit en vergelijkt deze met actuele waarden.
+* **Monitoring:** Foutstatistieken (RMSE) en data drift worden berekend door Evidently en gevisualiseerd in Grafana.
+
+## 🗺️ Navigatie & Uitvoeringsgids (Voor Peer Reviewers)
+
+Om dit project te evalueren en uit te voeren, kloon je de repository en voer je het volgende uit:
+```bash
+docker-compose up --build
+```
+
+Hier is een kort overzicht van de actieve diensten:
+
+* **`docker-compose.yml`**: Orkestreert de volledige omgeving.
+* **`train-deploy/`**: Voert de trainingspipeline automatisch uit bij het opstarten.
+* **`deployment-web-api/`**: On-demand FastAPI-applicatie beschikbaar op `http://localhost:8000/docs`
+* **`deployment-batch/`**: Geplande Prefect flow. De Prefect UI is beschikbaar op `http://localhost:4200`
+* **`Monitoring`**: Grafana dashboards zijn beschikbaar op `http://localhost:3400` (Login: `admin` / `admin`). MLflow tracking is te vinden op `http://localhost:5000`.

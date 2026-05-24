@@ -3,6 +3,7 @@ uvicorn
 mlflow
 pandas
 scikit-learn
+psutil
 
 # For Unit testing
 pytest
