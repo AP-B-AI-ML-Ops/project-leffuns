@@ -67,3 +67,10 @@ docker-compose up --build
 * **`deployment-web-api/`**：按需提供服务的 FastAPI 应用程序，访问地址：`http://localhost:8000/docs`
 * **`deployment-batch/`**：定时运行的 Prefect 工作流。Prefect UI 访问地址：`http://localhost:4200`
 * **`Monitoring`**：Grafana 仪表板访问地址：`http://localhost:3400`（登录名/密码：`admin` / `admin`）。MLflow 跟踪界面访问地址：`http://localhost:5000`。
+  > 💡 **注意**：*由于这是一个时间序列仪表板，监控面板最初只会显示一个数据点。要查看 RMSE 趋势线，请等待预设的 Prefect 批处理流程多次运行，或者通过 Prefect UI 手动触发 `Batch Scoring Flow`。*
+
+要在本地运行 API 单元测试：
+
+```bash
+pytest deployment-web-api/
+```

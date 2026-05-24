@@ -67,4 +67,11 @@ Hier is een kort overzicht van de actieve diensten:
 * **`train-deploy/`**: Voert de trainingspipeline automatisch uit bij het opstarten.
 * **`deployment-web-api/`**: On-demand FastAPI-applicatie beschikbaar op `http://localhost:8000/docs`
 * **`deployment-batch/`**: Geplande Prefect flow. De Prefect UI is beschikbaar op `http://localhost:4200`
-* **`Monitoring`**: Grafana dashboards zijn beschikbaar op `http://localhost:3400` (Login: `admin` / `admin`). MLflow tracking is te vinden op `http://localhost:5000`.
+* **`Monitoring`**: Grafana-dashboards zijn beschikbaar op `http://localhost:3400` (Login: `admin` / `admin`). MLflow-tracking is te vinden op `http://localhost:5000`.
+  > 💡 **Let op**: *Omdat dit een tijdreeks-dashboard is, zie je in het begin slechts één datapunt. Om de RMSE-trendlijn te zien verschijnen, moet je het geplande Prefect-batchproces meerdere keren laten uitvoeren of de `Batch Scoring Flow` handmatig activeren via de Prefect UI.*
+
+Om de tests manueel te testen:
+
+```bash
+pytest deployment-web-api/
+```
