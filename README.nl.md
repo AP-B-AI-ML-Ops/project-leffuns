@@ -54,6 +54,15 @@ Het project maakt gebruik van ML om een output te voorspellen op basis van de da
 * **Batch Scoring:** Een geplande pipeline haalt nieuwe gegevens op, voert voorspellingen uit en vergelijkt deze met actuele waarden.
 * **Monitoring:** Foutstatistieken (RMSE) en data drift worden berekend door Evidently en gevisualiseerd in Grafana.
 
+## 📂 Vereisten voor gegevens
+Om het project uit te voeren, moet u ervoor zorgen dat er een lokale ./data/ map in de hoofdmap bestaat met de volgende CSV-bestanden:
+
+* ./data/wind.csv (Windsnelheidsgegevens)
+
+* ./data/productie.csv (Energieproductiegegevens)
+
+Zorg ervoor dat deze bestanden correct zijn geformatteerd om overeen te komen met het verwachte invoerschema voor de feature engineering pipeline.
+
 ## 🗺️ Navigatie & Uitvoeringsgids (Voor Peer Reviewers)
 
 Om dit project te evalueren en uit te voeren, kloon je de repository en voer je het volgende uit:
