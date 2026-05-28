@@ -12,10 +12,6 @@ If this project was helpful or educational in any way, please drop a star ⭐️
 
 </div>
 
-To ensure your peer reviewer doesn't run into issues with stale images, you should place this right at the top of your `README.md` or in the **Getting Started** section.
-
-Here is a block you can copy and paste:
-
 ---
 
 > ### ⚠️ Important: Environment Refresh
