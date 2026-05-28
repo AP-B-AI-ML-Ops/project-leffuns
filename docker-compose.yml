@@ -12,7 +12,7 @@ services:
   experiment-tracking:
     build: ./backend-service-experiment-tracking
     ports:
-      - 5000:5000
+      - "${MLFLOW_HOST_PORT:-5001}:5000"
     depends_on:
       - database
 
@@ -23,6 +23,7 @@ services:
       - 4200:4200
     environment:
       - PREFECT_SERVER_API_HOST=0.0.0.0
+      - PREFECT_UI_API_URL=http://localhost:4200/api
 
   # model training service
   # This runs a main.py which runs multiple scripts to preprocess data, train a model, and log the results to MLFlow.
