@@ -12,6 +12,11 @@ If this project was helpful or educational in any way, please drop a star ⭐️
 
 </div>
 
+IF THE CODE DOESNT WORK, USE THIS VERSION INSTEAD:
+```
+git checkout 3cbad7376aa0efe1d3a76c265fe9056e2b7a0572
+```
+
 ## 📊 Datasets
 
 This project uses a variety of datasets all related to wind energy in Belgium at differing periods of times.
