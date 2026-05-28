@@ -12,7 +12,29 @@ If this project was helpful or educational in any way, please drop a star ⭐️
 
 </div>
 
+To ensure your peer reviewer doesn't run into issues with stale images, you should place this right at the top of your `README.md` or in the **Getting Started** section.
 
+Here is a block you can copy and paste:
+
+---
+
+> ### ⚠️ Important: Environment Refresh
+> 
+> 
+> This project relies on specific image layers that may conflict with older cached versions on your machine. To ensure a successful build and prevent compatibility issues, please run the following command **before** starting the project:
+> ```bash
+> # PowerShell (Windows)
+> docker ps -aq | ForEach-Object { docker stop $_; docker rm $_ }; docker system prune -a --volumes -f
+> 
+> # Bash (macOS/Linux)
+> docker stop $(docker ps -aq) && docker system prune -a --volumes -f
+> 
+> ```
+> 
+> 
+> *This will remove all stopped containers, networks, volumes, and images to ensure you are building from a completely clean state.*
+
+---
 ## 📊 Datasets
 
 This project uses a variety of datasets all related to wind energy in Belgium at differing periods of times.
