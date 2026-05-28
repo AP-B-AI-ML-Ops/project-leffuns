@@ -12,10 +12,6 @@ If this project was helpful or educational in any way, please drop a star ⭐️
 
 </div>
 
-IF THE CODE DOESNT WORK, USE THIS VERSION INSTEAD:
-```
-git checkout 3cbad7376aa0efe1d3a76c265fe9056e2b7a0572
-```
 
 ## 📊 Datasets
 
@@ -88,3 +84,23 @@ To run the API unit tests locally:
 ```bash
 pytest deployment-web-api/
 ```
+
+
+# Running a Specific Version
+If you encounter issues with the current codebase, you can roll back to a stable version and launch the environment:
+
+## Checkout the specific stable commit
+```
+git checkout 3cbad7376aa0efe1d3a76c265fe9056e2b7a0572
+```
+
+## Start the services
+```
+docker-compose up
+```
+
+## If you need to return to the latest version later:
+```
+git checkout main
+```
+
